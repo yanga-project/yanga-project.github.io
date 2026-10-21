@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-content_root="{{ content_root }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,13 @@
 <link rel="icon" href="{{ pathto('_static/logo.svg', 1) }}" type="image/svg+xml">
 <link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
 <link rel="stylesheet" href="{{ pathto('_static/sheet.css', 1) }}">
+{#- The blocks the basic theme's search page fills. #}
+{%- block scripts %}
+{%- for js in script_files %}
+{{ js_tag(js) }}
+{%- endfor %}
+{%- endblock %}
+{%- block extrahead %}{% endblock %}
 </head>
 <body>
 <main class="sheet{% if "/" in pagename %} entry{% endif %}">
@@ -30,11 +37,14 @@
     <span class="reserved" title="Not issued yet"><span class="no">{{ loop.index }}</span>{{ name }}</span>
     {%- endif %}
     {%- endfor %}
+    <form class="find" action="{{ pathto('search') }}" method="get">
+      <input type="search" name="q" placeholder="Find" aria-label="Search the site">
+    </form>
     <a class="gh" href="https://github.com/yanga-project">GitHub</a>
   </nav>
 
-  <div class="page">
-  {{ body }}
+  <div class="page" role="main">
+  {% block body %}{{ body }}{% endblock %}
 
   {%- if current.no %}
     <table class="title" aria-label="Title block">
@@ -52,5 +62,10 @@
   {%- endif %}
   </div>
 </main>
+<script>
+  // Show the search words of a result page in the search box. Runs before sphinx_highlight.js removes them from the address.
+  const highlight = new URLSearchParams(window.location.search).get("highlight");
+  if (highlight) document.querySelector(".find input").value = highlight;
+</script>
 </body>
 </html>

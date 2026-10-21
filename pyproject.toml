@@ -9,4 +9,5 @@ dev = [
   "myst-parser>=4",
   "sphinx>=8",
   "sphinx-autobuild>=2024.10.3,<2025",
+  "sphinx-llms-txt>=0.7",
 ]

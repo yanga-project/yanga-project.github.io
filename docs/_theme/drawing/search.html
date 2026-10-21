@@ -1,0 +1,31 @@
+{#- The sheet index already has the search box, so the search page keeps only the progress line for searchtools.js, and drops the multi-word hint. #}
+{%- extends "basic/search.html" %}
+{%- block searchbox %}<span id="search-progress"></span>{% endblock %}
+{%- block searchtext %}{% endblock %}
+{#- Shorter result line. addTranslations is the call Sphinx's own translations.js makes. #}
+{%- block scripts %}
+{{ super() }}
+<script>
+Documentation.addTranslations({
+  locale: "en",
+  plural_expr: "n === 1 ? 0 : 1",
+  messages: {
+    "Search finished, found one page matching the search query.": [
+      "Found one page matching the search query.",
+      "Found ${resultCount} pages matching the search query.",
+    ],
+  },
+});
+// Sphinx hands the search words to the result page only once. Putting them in the link keeps them for every result opened.
+const addHighlight = (event) => {
+  const link = event.target.closest("#search-results a");
+  const query = new URLSearchParams(window.location.search).get("q");
+  if (!link || !query) return;
+  const url = new URL(link.href);
+  url.searchParams.set("highlight", query);
+  link.href = url;
+};
+document.addEventListener("click", addHighlight);
+document.addEventListener("auxclick", addHighlight);
+</script>
+{%- endblock %}

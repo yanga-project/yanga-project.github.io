@@ -5,7 +5,7 @@ project = "yanga-project"
 copyright = "2026, Alexandru Maxiniuc"
 author = "Alexandru Maxiniuc"
 
-extensions = ["myst_parser"]
+extensions = ["myst_parser", "sphinx_llms_txt"]
 myst_enable_extensions = ["colon_fence", "attrs_block"]
 source_suffix = [".md"]
 exclude_patterns = ["_build", "_theme", "Thumbs.db", ".DS_Store"]
