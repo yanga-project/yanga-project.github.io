@@ -1,0 +1,11 @@
+# yanga-project
+
+> A software product line engineering platform. Tools, workflows and trainings for building one product line into many variants on many platforms.
+
+## Docs
+
+- [yanga-project](/_sources/index.md.txt)
+- [Tools](/_sources/tools.md.txt)
+- [Logbook](/_sources/logbook.md.txt)
+- [2026-10-21 · Why the site looks like a technical drawing](/_sources/logbook/2026-10-21-drawing-set.md.txt)
+- [2026-10-20 · yanga-project.dev is online](/_sources/logbook/2026-10-20-site-online.md.txt)

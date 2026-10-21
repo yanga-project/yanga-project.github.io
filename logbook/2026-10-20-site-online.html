@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-content_root="../">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,9 @@
 <link rel="icon" href="../_static/logo.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../_static/pygments.css">
 <link rel="stylesheet" href="../_static/sheet.css">
+<script src="../_static/documentation_options.js?v=5929fcd5"></script>
+<script src="../_static/doctools.js?v=fd6eb6e6"></script>
+<script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
 </head>
 <body>
 <main class="sheet entry">
@@ -23,15 +26,20 @@
     <span class="reserved" title="Not issued yet"><span class="no">4</span>Trainings</span>
     <span class="reserved" title="Not issued yet"><span class="no">5</span>Examples</span>
     <a class="current" href="../logbook.html"><span class="no">6</span>Logbook</a>
+    <form class="find" action="../search.html" method="get">
+      <input type="search" name="q" placeholder="Find" aria-label="Search the site">
+    </form>
     <a class="gh" href="https://github.com/yanga-project">GitHub</a>
   </nav>
 
-  <div class="page">
+  <div class="page" role="main">
+  
   <section id="yanga-project-dev-is-online">
 <h1>2026-10-20 · yanga-project.dev is online</h1>
 <p>The yanga-project now has its own address. Until today, everything about yanga lived in the repositories and in talks on my personal site.</p>
 <p>This site is the place for the platform as a whole: the tools, how to work with them, trainings and examples. It starts small, with an overview and the tools sheet, and grows one sheet at a time.</p>
 </section>
+
 
     <table class="title" aria-label="Title block">
       <tr><th colspan="2">Title</th></tr>
@@ -47,5 +55,10 @@
     </table>
   </div>
 </main>
+<script>
+  // Show the search words of a result page in the search box. Runs before sphinx_highlight.js removes them from the address.
+  const highlight = new URLSearchParams(window.location.search).get("highlight");
+  if (highlight) document.querySelector(".find input").value = highlight;
+</script>
 </body>
 </html>
