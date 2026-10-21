@@ -1,0 +1,8 @@
+pipeline:
+  - step: CreateVEnv
+    module: pypeline.steps.create_venv
+    config:
+      package_manager: uv>=0.6
+      python_version: "3.13"
+  - step: BuildDocs
+    run: sphinx-build -E -a docs build/docs

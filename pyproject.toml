@@ -1,0 +1,12 @@
+[project]
+name = "yanga-project-dev"
+version = "0.0.0"
+description = "The yanga project website."
+requires-python = ">=3.13"
+
+[dependency-groups]
+dev = [
+  "myst-parser>=4",
+  "sphinx>=8",
+  "sphinx-autobuild>=2024.10.3,<2025",
+]

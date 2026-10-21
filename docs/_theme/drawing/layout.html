@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title|striptags }} · {{ project }}</title>
+<link rel="icon" href="{{ pathto('_static/logo.svg', 1) }}" type="image/svg+xml">
+<link rel="stylesheet" href="{{ pathto('_static/pygments.css', 1) }}">
+<link rel="stylesheet" href="{{ pathto('_static/sheet.css', 1) }}">
+</head>
+<body>
+<main class="sheet{% if "/" in pagename %} entry{% endif %}">
+  <div class="zones top"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+  <div class="zones under"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+  <div class="zones left"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+  <div class="zones right"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+  <div class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+  {#- The site is a drawing set: each entry in `sheets` (conf.py) is one sheet, None marks a sheet not issued yet.
+      Pages below a sheet's folder (logbook/...) belong to that sheet. #}
+  {%- set current = namespace(no=0, name="") %}
+  <nav class="index" aria-label="Sheets">
+    <a class="home" href="{{ pathto('index') }}"><img src="{{ pathto('_static/logo.svg', 1) }}" alt="">{{ project }}</a>
+    {%- for doc, name in sheets %}
+    {%- if doc and (doc == pagename or pagename.startswith(doc ~ '/')) %}{% set current.no = loop.index %}{% set current.name = name %}
+    <a class="current" href="{{ pathto(doc) }}"><span class="no">{{ loop.index }}</span>{{ name }}</a>
+    {%- elif doc %}
+    <a href="{{ pathto(doc) }}"><span class="no">{{ loop.index }}</span>{{ name }}</a>
+    {%- else %}
+    <span class="reserved" title="Not issued yet"><span class="no">{{ loop.index }}</span>{{ name }}</span>
+    {%- endif %}
+    {%- endfor %}
+    <a class="gh" href="https://github.com/yanga-project">GitHub</a>
+  </nav>
+
+  <div class="page">
+  {{ body }}
+
+  {%- if current.no %}
+    <table class="title" aria-label="Title block">
+      <tr><th colspan="2">Title</th></tr>
+      <tr><td colspan="2" class="big">{{ project }}</td></tr>
+      <tr><th>Dwg no.</th><th>Kind</th></tr>
+      <tr><td>YP-{{ "%03d" % current.no }}</td><td>An SPLE platform</td></tr>
+      <tr><th>Sheet</th><th>Name</th></tr>
+      <tr><td>{{ current.no }} / {{ sheets|length }}</td><td>{{ current.name }}</td></tr>
+      <tr><th>Scale</th><th>Projection</th></tr>
+      <tr><td>1 : n variants</td><td><img src="{{ pathto('_static/logo.svg', 1) }}" alt="First-angle projection"></td></tr>
+      <tr><th>Drawn</th><th>Date</th></tr>
+      <tr><td><a href="https://{{ drawn }}">{{ drawn }}</a></td><td>{{ last_updated }}</td></tr>
+    </table>
+  {%- endif %}
+  </div>
+</main>
+</body>
+</html>

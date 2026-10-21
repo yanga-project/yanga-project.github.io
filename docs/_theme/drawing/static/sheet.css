@@ -1,0 +1,128 @@
+/* Palette: RAL 7035 cabinet grey, RAL 7016 anthracite, RAL 9016 traffic white,
+   and the IEC 60073 indicator colours used only for status: blue information. */
+/* osifont: lettering after ISO 3098, as used on technical drawings (LGPL3 with font exception). */
+@font-face {
+  font-family: "osifont";
+  src: url("osifont.woff") format("woff");
+}
+:root {
+  --cabinet: #c5c7c4;
+  --paper: #f6f6f6;
+  --ink: #293133;
+  --info: #2271b3;
+  /* Two line widths, as in ISO 128: thick for outlines, thin for leaders, rules and frames. */
+  --thick: 2px;
+  --thin: 1px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--cabinet); color: var(--ink);
+  font-family: "osifont", sans-serif; font-size: 16px; line-height: 1.55;
+}
+a { color: inherit; }
+.sheet {
+  width: calc(100% - 72px); max-width: 1180px; margin: 36px auto; background: var(--paper);
+  border: var(--thick) solid var(--ink); outline: var(--thin) solid var(--ink); outline-offset: 12px;
+  position: relative; padding: 0 48px;
+}
+/* Zone marks on all four sides of the frame. */
+.zones { position: absolute; display: flex; justify-content: space-around; font-size: 11px; line-height: 1; }
+.zones.top { left: 0; right: 0; top: -7px; transform: translateY(-50%); }
+.zones.under { left: 0; right: 0; bottom: -7px; transform: translateY(50%); }
+.zones.left, .zones.right { flex-direction: column; top: 0; bottom: 0; }
+.zones.left { left: -7px; transform: translateX(-50%); }
+.zones.right { right: -7px; transform: translateX(50%); }
+/* Centring marks: short thick lines at the middle of each edge, crossing the margin. */
+.marks i { position: absolute; background: var(--ink); }
+.marks i:nth-child(1) { left: 50%; top: -14px; width: var(--thick); height: 14px; }
+.marks i:nth-child(2) { left: 50%; bottom: -14px; width: var(--thick); height: 14px; }
+.marks i:nth-child(3) { top: 50%; left: -14px; height: var(--thick); width: 14px; }
+.marks i:nth-child(4) { top: 50%; right: -14px; height: var(--thick); width: 14px; }
+
+/* Sheet index: the site is a drawing set, each page one sheet. */
+.index {
+  display: flex; margin: 0 -48px; border-bottom: var(--thick) solid var(--ink);
+  font-size: 12px; text-transform: uppercase; letter-spacing: .08em;
+}
+.index > * { padding: 12px 16px; border-right: var(--thin) solid var(--ink); white-space: nowrap; text-decoration: none; }
+.index .home { display: flex; align-items: center; gap: 10px; }
+.index .home img { height: 16px; }
+.index a:hover { box-shadow: inset 0 -3px 0 var(--ink); }
+.index .current { background: var(--ink); color: var(--paper); }
+.index .reserved { opacity: .45; }
+.index .no { opacity: .6; margin-right: 6px; }
+.index .gh { margin-left: auto; border-right: 0; border-left: var(--thin) solid var(--ink); }
+
+/* osifont has one weight; titles get a thicker pen, as drawings use wider line widths for titles. */
+h1, h2, .title .big { -webkit-text-stroke: .035em currentColor; }
+h1 { font-weight: 400; font-size: clamp(44px, 9vw, 116px); line-height: 1; margin: 40px 0 0; letter-spacing: -.02em; }
+h2 { font-weight: 400; font-size: 28px; margin: 0; }
+.lede { max-width: 620px; font-size: 18px; margin: 36px 0 0; }
+
+.notes { margin-top: 20px; font-size: 13px; }
+.notes b { font-weight: 400; letter-spacing: .14em; }
+.notes ol { margin: 4px 0 0; padding-left: 22px; }
+
+svg.diagram { width: 100%; height: auto; margin: 36px 0 12px; display: block; }
+svg.diagram text { font-family: "osifont", sans-serif; fill: var(--ink); }
+.pipe { fill: none; stroke: var(--ink); stroke-width: var(--thick); }
+.box { fill: var(--paper); stroke: var(--ink); stroke-width: var(--thick); }
+.balloon circle { fill: var(--paper); stroke: var(--ink); stroke-width: var(--thin); }
+.balloon line { stroke: var(--ink); stroke-width: var(--thin); }
+svg.narrow { display: none; }
+
+table { border-collapse: collapse; font-size: 13px; }
+th, td { border-right: var(--thin) solid var(--ink); border-bottom: var(--thin) solid var(--ink); padding: 8px 12px; text-align: left; vertical-align: top; }
+th { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; font-weight: 400; }
+td a, .detail a { text-decoration: none; border-bottom: var(--thin) solid var(--cabinet); }
+td a:hover, .detail a:hover { color: var(--info); border-color: var(--info); }
+
+/* Page content runs full width; the parts list and the title block share the bottom strip side by side. */
+.page { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); }
+.page > section { display: contents; }
+.page > section > * { grid-column: 1 / -1; }
+.page > section > table.parts { grid-column: 1; align-self: start; margin: 36px 0 0 -48px; }
+.page > .title { grid-column: 2; margin: 36px -48px 0 0; border-left: var(--thin) solid var(--ink); }
+table.parts, .title { border-top: var(--thick) solid var(--ink); }
+.page > section > p, .page > section > section > p { max-width: 720px; }
+.title td, .title th { border-right: 0; }
+.title td + td, .title th + th { border-left: var(--thin) solid var(--ink); }
+.title tr:last-child td { border-bottom: 0; }
+.title .big { font-size: 26px; }
+.title img { height: 22px; vertical-align: middle; }
+
+/* Detail views on the tools sheet. */
+.details { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 40px 0 12px; }
+.detail { border: var(--thick) solid var(--ink); padding: 20px 24px; position: relative; }
+.detail .tag { position: absolute; top: -11px; left: 16px; background: var(--paper); padding: 0 8px; font-size: 12px; letter-spacing: .1em; }
+.detail p { margin: 10px 0 14px; }
+.detail .links { font-size: 13px; }
+.detail .links a { margin-right: 14px; }
+
+/* Logbook: the entry list reads like the rows of a log. */
+.toctree-wrapper ul { list-style: none; padding: 0; margin: 32px 0 0; border-top: var(--thin) solid var(--ink); }
+.toctree-wrapper li { border-bottom: var(--thin) solid var(--ink); }
+.toctree-wrapper li a { display: block; padding: 10px 0; text-decoration: none; }
+.toctree-wrapper li a:hover { color: var(--info); }
+.entry h1 { font-size: clamp(32px, 5vw, 56px); }
+.highlight { background: transparent; }
+pre { border: var(--thin) solid var(--ink); padding: 12px 16px; overflow-x: auto; font-size: 13px; }
+
+/* The sheet index wraps into rows instead of scrolling once it no longer fits on one line. */
+@media (max-width: 900px) {
+  .index { flex-wrap: wrap; }
+  .index > * { flex: 1 1 auto; border-bottom: var(--thin) solid var(--ink); margin-bottom: -1px; }
+  .index .home { flex-basis: 100%; }
+  .index .gh { margin-left: 0; border-left: 0; }
+}
+@media (max-width: 760px) {
+  .sheet { width: auto; margin: 16px; padding: 0 16px; outline: 0; }
+  .zones, .marks { display: none; }
+  .index { margin: 0 -16px; }
+  .page { grid-template-columns: minmax(0, 1fr); }
+  .page > section > table.parts, .page > .title { grid-column: 1; margin: 36px -16px 0; border-left: 0; }
+  .page > .title { margin-top: 0; }
+  .details { grid-template-columns: minmax(0, 1fr); }
+  svg.wide { display: none; }
+  svg.narrow { display: block; max-width: 420px; margin-left: auto; margin-right: auto; }
+}
