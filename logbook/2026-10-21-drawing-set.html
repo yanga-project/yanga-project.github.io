@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026-10-21 · Why the site looks like a technical drawing · yanga-project</title>
+<link rel="icon" href="../_static/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../_static/pygments.css">
+<link rel="stylesheet" href="../_static/sheet.css">
+</head>
+<body>
+<main class="sheet entry">
+  <div class="zones top"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+  <div class="zones under"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+  <div class="zones left"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+  <div class="zones right"><span>A</span><span>B</span><span>C</span><span>D</span></div>
+  <div class="marks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <nav class="index" aria-label="Sheets">
+    <a class="home" href="../index.html"><img src="../_static/logo.svg" alt="">yanga-project</a>
+    <a href="../index.html"><span class="no">1</span>Overview</a>
+    <a href="../tools.html"><span class="no">2</span>Tools</a>
+    <span class="reserved" title="Not issued yet"><span class="no">3</span>Workflows</span>
+    <span class="reserved" title="Not issued yet"><span class="no">4</span>Trainings</span>
+    <span class="reserved" title="Not issued yet"><span class="no">5</span>Examples</span>
+    <a class="current" href="../logbook.html"><span class="no">6</span>Logbook</a>
+    <a class="gh" href="https://github.com/yanga-project">GitHub</a>
+  </nav>
+
+  <div class="page">
+  <section id="why-the-site-looks-like-a-technical-drawing">
+<h1>2026-10-21 · Why the site looks like a technical drawing</h1>
+<p>A product line is engineered, so the site is drawn like an engineering drawing set. Each page is a sheet with a number, and the header is the sheet index.</p>
+<section id="taken-from-standards">
+<h2>Taken from standards</h2>
+<ul class="simple">
+<li><p>The colours are RAL 7035, 7016 and 9016, the greys and white of industrial control cabinets.</p></li>
+<li><p>The font is osifont, lettering after ISO 3098.</p></li>
+<li><p>Lines come in two widths, thick and thin, as in ISO 128.</p></li>
+</ul>
+</section>
+<section id="adding-a-sheet">
+<h2>Adding a sheet</h2>
+<p>A new page is a Markdown file plus one line in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">"sheets"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">"index"</span><span class="p">,</span> <span class="s2">"Overview"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"tools"</span><span class="p">,</span> <span class="s2">"Tools"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">"logbook"</span><span class="p">,</span> <span class="s2">"Logbook"</span><span class="p">),</span>
+<span class="p">],</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <table class="title" aria-label="Title block">
+      <tr><th colspan="2">Title</th></tr>
+      <tr><td colspan="2" class="big">yanga-project</td></tr>
+      <tr><th>Dwg no.</th><th>Kind</th></tr>
+      <tr><td>YP-006</td><td>An SPLE platform</td></tr>
+      <tr><th>Sheet</th><th>Name</th></tr>
+      <tr><td>6 / 6</td><td>Logbook</td></tr>
+      <tr><th>Scale</th><th>Projection</th></tr>
+      <tr><td>1 : n variants</td><td><img src="../_static/logo.svg" alt="First-angle projection"></td></tr>
+      <tr><th>Drawn</th><th>Date</th></tr>
+      <tr><td><a href="https://www.maxiniuc.com">www.maxiniuc.com</a></td><td>2026-10-21</td></tr>
+    </table>
+  </div>
+</main>
+</body>
+</html>
