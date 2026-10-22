@@ -7,13 +7,42 @@ logbook
 ```
 
 {.lede}
-A software product line engineering platform. Tools, workflows and trainings for building one product line into many variants on many platforms.
+A software product line engineering platform. Tools, workflows and trainings for building one product line into many variants on many platforms. The variant is your product. The platform under it can be swapped.
 
 <div class="notes"><b>NOTES</b>
 <ol>
 <li>One configuration in, every variant out.</li>
+<li>Prototype and series product share the variant. Only the platform changes.</li>
 </ol>
 </div>
+
+<!-- Swap diagram: one variant on top, the platforms below fit into the same slot. -->
+<svg class="diagram wide" viewBox="0 0 1080 260" role="img" aria-label="Swap diagram: one variant with its features, components and tests sits on a platform; host, Zephyr, AUTOSAR and custom platforms can be swapped under it">
+  <rect class="box" x="340" y="20" width="400" height="70"/><text x="356" y="48" font-size="14">Variant</text><text x="356" y="72" font-size="11" fill-opacity=".6">features · components · tests</text>
+  <text x="760" y="60" font-size="12">your product</text>
+  <path class="pipe" d="M540 90 V130"/>
+  <path class="pipe" stroke-dasharray="8 6" d="M150 130 H930 M150 130 V170 M410 130 V170 M670 130 V170 M930 130 V170"/>
+  <text x="950" y="134" font-size="12">swap</text>
+  <g>
+    <rect class="box" x="40" y="170" width="220" height="60"/><text x="54" y="196" font-size="12">Host</text><text x="54" y="216" font-size="10" fill-opacity=".6">unit tests</text>
+    <rect class="box" x="300" y="170" width="220" height="60"/><text x="314" y="196" font-size="12">Zephyr</text><text x="314" y="216" font-size="10" fill-opacity=".6">prototype</text>
+    <rect class="box" x="560" y="170" width="220" height="60"/><text x="574" y="196" font-size="12">AUTOSAR</text><text x="574" y="216" font-size="10" fill-opacity=".6">series product</text>
+    <rect class="box" x="820" y="170" width="220" height="60"/><text x="834" y="196" font-size="12">Custom</text><text x="834" y="216" font-size="10" fill-opacity=".6">hobby project</text>
+  </g>
+</svg>
+
+<!-- Same diagram, drawn top to bottom for narrow screens. -->
+<svg class="diagram narrow" viewBox="0 0 360 420" role="img" aria-label="Swap diagram: one variant with its features, components and tests sits on a platform; host, Zephyr, AUTOSAR and custom platforms can be swapped under it">
+  <rect class="box" x="4" y="10" width="352" height="64"/><text x="18" y="36" font-size="14">Variant</text><text x="18" y="58" font-size="11" fill-opacity=".6">features · components · tests</text>
+  <path class="pipe" stroke-dasharray="8 6" d="M40 74 V370 M40 130 H80 M40 210 H80 M40 290 H80 M40 370 H80"/>
+  <text x="50" y="100" font-size="12">swap</text>
+  <g font-size="14">
+    <rect class="box" x="80" y="104" width="240" height="52"/><text x="94" y="126">Host</text><text x="94" y="146" font-size="11" fill-opacity=".6">unit tests</text>
+    <rect class="box" x="80" y="184" width="240" height="52"/><text x="94" y="206">Zephyr</text><text x="94" y="226" font-size="11" fill-opacity=".6">prototype</text>
+    <rect class="box" x="80" y="264" width="240" height="52"/><text x="94" y="286">AUTOSAR</text><text x="94" y="306" font-size="11" fill-opacity=".6">series product</text>
+    <rect class="box" x="80" y="344" width="240" height="52"/><text x="94" y="366">Custom</text><text x="94" y="386" font-size="11" fill-opacity=".6">hobby project</text>
+  </g>
+</svg>
 
 <!-- Process diagram: inputs merge into the pipeline, which fans out per variant and platform. -->
 <svg class="diagram wide" viewBox="0 0 1080 300" role="img" aria-label="Process diagram: components, variants and platforms go through feature model, build system and build, and come out as one build per variant and platform">
@@ -36,6 +65,7 @@ A software product line engineering platform. Tools, workflows and trainings for
     <text x="910" y="264">… · …</text>
   </g>
   <g class="balloon" font-size="12">
+    <line x1="340" y1="120" x2="365" y2="70"/><circle cx="377" cy="58" r="14"/><text x="373" y="62">1</text>
     <line x1="540" y1="120" x2="565" y2="70"/><circle cx="577" cy="58" r="14"/><text x="573" y="62">2</text>
   </g>
 </svg>
@@ -61,6 +91,7 @@ A software product line engineering platform. Tools, workflows and trainings for
     <text x="80" y="515">… · …</text>
   </g>
   <g class="balloon" font-size="12">
+    <line x1="280" y1="138" x2="310" y2="138"/><circle cx="324" cy="138" r="14"/><text x="320" y="142">1</text>
     <line x1="280" y1="224" x2="310" y2="224"/><circle cx="324" cy="224" r="14"/><text x="320" y="228">2</text>
   </g>
 </svg>

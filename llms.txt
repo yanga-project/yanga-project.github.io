@@ -1,6 +1,6 @@
 # yanga-project
 
-> A software product line engineering platform. Tools, workflows and trainings for building one product line into many variants on many platforms.
+> A software product line engineering platform. Tools, workflows and trainings for building one product line into many variants on many platforms. The variant is your product. The platform under it can be swapped.
 
 ## Docs
 
